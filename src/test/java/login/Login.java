@@ -1,8 +1,6 @@
 package login;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -36,10 +34,12 @@ public class Login {
 		transferenciasPagosMenu = By.xpath("//*[@id='menu']/ul/li[2]/a");
 		tranferenciasMasivasMenu = By.xpath("//*[@id='menu-second2']/div[2]/div[3]/a/span[3]");
 		lnkCargarArchivo = By.xpath("/html/body/div[1]/div[8]/table/tbody/tr/td[1]/div[1]/div[2]/a");
-		buttonExaminar = By.xpath(
-				"/html/body/div/div[3]/table/tbody/tr[2]/td[2]/table/tbody/tr/td[2]/table/tbody/tr[2]/td[2]/input");
+		//buttonExaminar = By.id("Numcuentas");
 		// buttonExaminar = By.id("nomarchivo");
-		txtSeleccionaArchivo = By.xpath("//*[@id='Numcuentas']");
+		txtSeleccionaArchivo = By.xpath("/html/body/div/div[3]/table/tbody/tr[2]/td[2]/table/tbody/tr/td[2]/table/tbody/tr[2]/td[1]");
+		
+		
+		
 		buttonValidar = By.xpath("/html/body/div/div[4]/input");
 
 	}
@@ -81,23 +81,29 @@ public class Login {
 
 	}
 
-	public void cargaArchivo() {
+	public void cargaArchivo() throws IOException {
 		Helpers helpers = new Helpers();
+		ScreenShot screenshot  = new ScreenShot(driver);
 		helpers.seconds(2);
 		driver.findElement(transferenciasPagosMenu).click();
+		screenshot.screenShot("6");
 		helpers.seconds(2);
 		driver.findElement(tranferenciasMasivasMenu).click();
+		screenshot.screenShot("7");
 		helpers.seconds(2);
 		driver.findElement(lnkCargarArchivo).click();
-		helpers.seconds(5);
+		screenshot.screenShot("8");
+		helpers.seconds(10);
+		helpers.CrearWord();
+		
 		// ERROR
-		driver.findElement(buttonValidar).click();
-		helpers.seconds(4);
-		driver.findElement(txtSeleccionaArchivo).click();
-		helpers.seconds(5);
+		// driver.findElement(buttonValidar).click();
+		// helpers.seconds(4);
+		 driver.findElement(txtSeleccionaArchivo).click();
+		 helpers.seconds(5);
 		driver.findElement(buttonExaminar).click();
 		// Highlight (driver.findElement(buttonExaminar).click());
-		helpers.seconds(4);
+		helpers.seconds(10);
 		System.out.println("Cargar Archivo");
 
 	}

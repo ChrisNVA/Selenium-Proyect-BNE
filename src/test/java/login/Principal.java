@@ -51,7 +51,7 @@ public class Principal {
 	}
 
 	@Test
-	public void bneTesting() throws IOException {
+	public void bneTesting() throws IOException, InterruptedException {
 		Login login = new Login(driver);
 		login.loginAccess(numeroCliente, claveAcceso);
 		login.challng(challng);
