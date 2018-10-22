@@ -2,6 +2,7 @@ package login;
 
 import java.io.IOException;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -81,7 +82,7 @@ public class Login {
 
 	}
 
-	public void cargaArchivo() throws IOException {
+	public void cargaArchivo() throws IOException, InvalidFormatException {
 		Helpers helpers = new Helpers();
 		ScreenShot screenshot  = new ScreenShot(driver);
 		helpers.seconds(2);

@@ -2,6 +2,7 @@ package login;
 
 import java.io.IOException;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -51,7 +52,7 @@ public class Principal {
 	}
 
 	@Test
-	public void bneTesting() throws IOException, InterruptedException {
+	public void bneTesting() throws IOException, InterruptedException, InvalidFormatException {
 		Login login = new Login(driver);
 		login.loginAccess(numeroCliente, claveAcceso);
 		login.challng(challng);
