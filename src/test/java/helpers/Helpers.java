@@ -9,6 +9,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.util.Units;
@@ -85,7 +86,7 @@ public class Helpers {
 	// System.out.println(nuevaCadena);
 	// }
 	
-	public void agregaCero(int dato){
+	public String agregaCero(int dato){
 		String datoFinal;
 		
 		if (dato <= 9){
@@ -93,6 +94,7 @@ public class Helpers {
 		}else{
 			datoFinal = "" + dato;
 		}
+		return datoFinal;
 	}
 
 	public void CrearWord() throws IOException, InvalidFormatException {
@@ -100,16 +102,17 @@ public class Helpers {
         int dia, mes, ano;
         String nombreDocumento;
 		int mesR;
-		Calendar calendario = Calendar.getInstance();
+		Helpers helper = new Helpers();
+		Calendar calendario = new GregorianCalendar();
         horas = calendario.get(Calendar.HOUR_OF_DAY);
         minutos = calendario.get(Calendar.MINUTE);
         segundos = calendario.get(Calendar.SECOND);
-        dia = calendario.get(Calendar.DAY_OF_MONTH);
-        mes = calendario.get(Calendar.MONTH);
+        mes = calendario.get(Calendar.MONTH) + 1;
+        System.out.println("este es el mes: " + mes);
   //      mesR=calendario.get(Calendar.DATE);
-  
         ano = calendario.get(Calendar.YEAR);
-        nombreDocumento = "BNE-" + dia + mes + ano + "-"+ horas+ minutos + segundos + ".doc";
+        dia = calendario.get(Calendar.DAY_OF_MONTH);
+        nombreDocumento = "BNE-" + helper.agregaCero(dia) + helper.agregaCero(mes) + ano + "-"+ helper.agregaCero(horas) + helper.agregaCero(minutos) + helper.agregaCero(segundos) + ".doc";
         System.out.println(nombreDocumento);
         
 		File file = new File(nombreDocumento);
